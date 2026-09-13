@@ -170,6 +170,8 @@ The dataset consists of **6 main tables** used to build the transaction dashboar
 
 #### 2️⃣ Data Relationships:
 
+![Image](https://github.com/user-attachments/assets/724ed908-32a0-459c-b1b0-3ba584f34a7f)
+
 | **From Table**         | **To Table**         | **Join Key**              | **Relationship Type**                                   |
 |--------------------------|------------------------|-----------------------------|------------------------------------------------------------|
 | `banking cards`         | `banking users`       | `client_id` ↔ `id`         | Many-to-One (many cards per customer)                       |
@@ -183,6 +185,9 @@ The dataset consists of **6 main tables** used to build the transaction dashboar
 ### 🔍 Dashboard Preview
 
 ### 📋 I. Overview
+
+![Image](https://github.com/user-attachments/assets/d879767d-4e52-42f2-a5dc-16fe6c50f202)
+
 
 ### 📌 Key Findings:
 
@@ -215,6 +220,9 @@ The dataset consists of **6 main tables** used to build the transaction dashboar
 
 ### 📈 II. Transaction Behaviors
 
+![Iamge](https://github.com/user-attachments/assets/9b185e7c-5379-4672-89a1-110d818fc8ff)
+
+
 ### 📌 Key Findings:
 
 #### **1. Transactions by Payment Method**
@@ -246,6 +254,9 @@ The dataset consists of **6 main tables** used to build the transaction dashboar
 -> **Transaction activity is heavily domestic and concentrated in a few states**, with a long tail of low-volume international activity worth monitoring for anomalies.
 
 ### III. 🚨 Risk & Fraud
+
+![Image](https://github.com/user-attachments/assets/ab8f8d4e-8da3-42c6-b218-d567093124ea)
+
 
 ### 📌 Key Findings:
 
