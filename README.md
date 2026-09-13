@@ -53,7 +53,7 @@ The project provided insights into **transaction trends**, **customer payment be
 #### Outcome:
 The dashboard enables data-driven monitoring of transaction health and risk, supporting faster identification of anomalies and more informed decisions on card, merchant, and customer segment strategy.
 
-## 📂 Dataset Description & Data Structure
+## Dataset Description & Data Structure
 
 ### 📌 Data Source
 - **Source**: Xóm - Dataset Bannking
