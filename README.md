@@ -7,10 +7,10 @@
 **Tools Used:** Power BI
 
 ## Table of Contents
-1. [📌 Background & Overview](#-background--overview)
-2. [📂 Dataset Description & Data Structure](#-dataset-description--data-structure)
-3. [📊 Key Insights & Visualizations](#-key-insights--visualizations)
-4. [🔎 Final Conclusion & Recommendation](#-final-conclusion--recommendation)
+[📌 Background & Overview](#-background--overview) <br>
+[📂 Dataset Description & Data Structure](#-dataset-description--data-structure) <br>
+[📊 Key Insights & Visualizations](#-key-insights--visualizations) <br>
+[🔎 Final Conclusion & Recommendation](#-final-conclusion--recommendation)
 
 ---
 
@@ -45,10 +45,10 @@ This dashboard is designed for key stakeholders involved in banking operations, 
 The project provided insights into **transaction trends**, **customer payment behavior**, and **fraud risk**, helping identify areas to improve monitoring and reduce risk exposure.
 
 #### Key Results:
-- Tracked total transaction value (**2.43M**) and volume (**56K transactions**) with clear YoY and forecast trend lines.
-- Identified customer segments and merchant categories driving the highest spend.
-- Surfaced **22 flagged merchants** and **5K high-risk transactions** for closer review.
-- Built a transaction heatmap to detect unusual timing patterns tied to refund/fraud activity.
+- Tracked total transaction value and volume across **3 years (2022–2024)**, revealing stable performance in 2022–2023 followed by a **notable decline in 2024 (-16.66% in amount, -16.86% in transactions)**.
+- Identified customer segments and merchant categories driving the highest spend, consistent across all 3 years.
+- Found **flagged merchants declining every year (27 → 25 → 22)**, a positive fraud-control trend, while refund rate stays stable around **~5.2%** regardless of year.
+- Built a transaction heatmap and payment-method risk breakdown that hold consistent across all 3 years, strengthening confidence in the patterns found (e.g., chip transactions consistently carry the highest refund rate).
 
 #### Outcome:
 The dashboard enables data-driven monitoring of transaction health and risk, supporting faster identification of anomalies and more informed decisions on card, merchant, and customer segment strategy.
@@ -189,115 +189,130 @@ The dataset consists of **6 main tables** used to build the transaction dashboar
 ![Image](https://github.com/user-attachments/assets/d879767d-4e52-42f2-a5dc-16fe6c50f202)
 
 
-### 📌 Key Findings:
+### 📌 Key Findings (comparing 2022 → 2023 → 2024):
 
 #### **1. Overall Performance**
-- Total transaction amount reached **2.43M**, up **+0.18%** vs. last year, across **56K transactions** (down **-0.11%** YoY).
-- Refund rate stood at **5.18%**, down **-0.47%** YoY, while average transaction value rose slightly to **43.74** (+0.29%).
+- **2022** (baseline year): Total amount **2.42M**, **56K transactions**, refund rate **5.21%**, avg transaction **43.61**.
+- **2023**: Total amount edged up to **2.43M (+0.18% YoY)**, transactions held steady at **56K (-0.11%)**, refund rate improved to **5.18% (-0.47%)**, avg transaction rose to **43.74 (+0.29%)**.
+- **2024**: Total amount dropped to **2.02M (-16.66% YoY)** and transactions fell to **46K (-16.86%)**, while refund rate ticked up to **5.23% (+1.00%)** and avg transaction rose slightly to **43.84 (+0.24%)**.
+- *Caveat: the 2024 YoY Comparison chart shows **November and December only as forecast (FC)**, not actual (AC), so part of the 2024 decline likely reflects an incomplete year (~10 months of actual data) rather than a full year-over-year drop.*
 
--> **Volume is roughly flat while spend value edges up**, and refund rate is trending in a healthy direction.
+-> **2022–2023 was stable-to-slightly-growing**, but **2024 shows a real decline in volume even accounting for the missing Nov–Dec data**, since Jan–Oct 2024 transactions (~46K) already trail the same period in prior years.
 
 #### **2. Actual, Moving Average and Forecast Trend**
-- Monthly transaction amount is volatile, swinging between **~180K–230K**, with the sharpest dip in **February** and a strong spike in **July (~230K)**.
-- The 12-month moving average stays flat around **200K–210K**, smoothing out the monthly noise, with a forecast line projecting continued stability.
+- **2022**: Amount climbed from **~193K (Jan)** to a peak of **~213K (May)**, then gradually eased back to **~196K–202K** by year-end; the moving average stayed flat around **200K**.
+- **2023**: More volatile — a sharp dip to **~180K in February**, a strong spike to **~230K in July**, moving average flat around **200K–210K**.
+- **2024**: Similar volatility (dip to **~189K in February**, high of **~213K in January**), with actual data ending in **October (~209K)** and **Nov–Dec shown only as a flat ~202K forecast**.
 
--> **Underlying demand is stable**, but individual months can swing sharply and deserve investigation (e.g. the July spike, February dip).
+-> **Underlying monthly demand is consistently volatile across all 3 years**, with February typically the weakest month — a recurring seasonal dip worth investigating (billing cycle, post-holiday spending pullback, etc.).
 
 #### **3. Transaction Trend (Volume)**
-- Transaction counts range from **~4,270 to ~4,860** per month, with a low in **February** and a peak in **July**, mirroring the amount trend.
+- Monthly transaction counts follow the same shape every year: a **February trough** (~4,234–4,272) and generally higher counts from **April–August**.
+- **2024** counts (~4,236–4,733) run consistently below the same months in **2022** (~4,577–4,797) and **2023** (~4,272–4,855), confirming the volume decline isn't just a Nov–Dec data gap.
 
--> **Volume and value move together**, suggesting seasonality rather than pricing shifts drives the swings.
+-> **The February dip is a structural, recurring pattern**, not a one-off — and 2024's per-month volume is genuinely softer than prior years even before accounting for missing year-end data.
 
 #### **4. YoY Comparison**
-- Most months show **positive YoY growth (4–7%)**, but a few months (**Feb -8%, Apr -2%, Jun -3%, Oct -2%**) underperform last year.
+- **2023** had more up months than down (7 positive, 5 negative), with the sharpest drop in **February (-8%)** and biggest gain in **July (+8%)**.
+- **2024** is more mixed: strong months in **January (+3%), June (+8%)**, but a sharp **-10% in July** and **-4% in March** — the opposite pattern from 2023's July spike.
+- 2022 serves as the baseline year with no prior-year comparison available.
 
--> **Growth is inconsistent across the year**, with early-year and mid-year dips worth root-causing.
+-> **Growth is inconsistent and doesn't repeat the same monthly pattern year to year**, so seasonality alone doesn't explain the swings — each dip/spike likely needs its own root-cause review.
 
 #### **5. Comparison by Income Segment**
-- **High Income** customers contribute the most spend (**1.07M** this year vs **1.05M** last year), followed by **Low Income (0.70M)** and **Middle Income (0.66M)**.
+- **2022** (baseline): High Income **1.05M**, Low Income **0.71M**, Middle Income **0.67M**.
+- **2023**: High Income grew to **1.07M** (vs **1.05M PY**); Low Income and Middle Income both dipped slightly (**0.70M** and **0.66M**).
+- **2024**: **All three segments declined** — High Income **0.87M** (vs **1.07M PY**), Low Income **0.59M** (vs **0.70M PY**), Middle Income **0.56M** (vs **0.66M PY**).
 
--> **High-income customers are the primary revenue driver** and a segment worth prioritizing for retention.
+-> **High-income customers remain the largest revenue segment every year**, but the **2024 drop hit all income segments proportionally**, suggesting the decline is broad-based (fewer/smaller transactions overall) rather than concentrated in one customer group.
 
 ### 📈 II. Transaction Behaviors
 
 ![Iamge](https://github.com/user-attachments/assets/9b185e7c-5379-4672-89a1-110d818fc8ff)
 
 
-### 📌 Key Findings:
+### 📌 Key Findings (comparing 2022 → 2023 → 2024):
 
 #### **1. Transactions by Payment Method**
-- **Chip Transactions dominate at 71.44% (40K)**, followed by **Swipe (17.18%, 10K)** and **Online (11.38%, 6K)**.
+- **Chip transactions dominate every year**, but its share slips slightly: **71.44% (2022) → 71.34% (2023) → 71.12% (2024)**.
+- **Swipe** share is edging up (**17.18% → 17.29% → 17.73%**) while **Online** stays roughly flat (**~11.1–11.4%**) across all 3 years.
 
--> **Chip usage is the primary channel**, meaning fraud controls and UX should prioritize this method.
+-> **Chip remains the primary channel**, but its slow erosion in favor of Swipe is a trend worth watching for fraud-control and UX prioritization over time.
 
 #### **2. Top Merchant Categories**
-- **Money Transfer** leads merchant spend (**0.21M**), followed by **Grocery Stores/Supermarkets (0.18M)** and **Wholesale Clubs (0.17M)**.
-- Categories like **Telecommunication Services** and **Tolls and Bridge Fees** trail at around **0.10M** each.
+- The ranking is **consistent across all 3 years**: **Money Transfer** leads (**0.18M–0.21M**), followed by **Grocery Stores/Supermarkets** and **Wholesale Clubs**, with **Telecommunication Services** and **Tolls/Bridge Fees** trailing around **0.09–0.10M**.
+- Absolute spend in every category shrinks in **2024**, in line with the overall volume decline, but the **relative ranking of categories is unchanged**.
 
--> **Spend is concentrated in a handful of essential categories**, useful for targeted merchant partnerships or rewards.
+-> **Spend concentration in essential categories is a stable, structural pattern**, not a one-year anomaly — useful for long-term merchant partnership or rewards strategy.
 
 #### **3. Customer Segments (by Credit Score)**
-- The **"Good"** and **"Very Good"** segments make up the bulk of customers (**29.3%** and **44.6%** respectively), while **"Very Poor"** is a small minority (**2.25%**).
-- Average income is highest for the **"Very Poor"** segment (**49,804**) — likely a small, distinct outlier group — while other segments average **~44K–46K**.
+- Segment composition is **identical every year**: **"Very Good" (44.6%)** and **"Good" (29.3%)** dominate the customer base, while **"Very Poor" (2.25%)** is a small minority.
+- The **"Very Poor" segment consistently has the highest average amount per transaction** of any segment — but this figure itself is trending down sharply: **86.95 (2022) → 67.39 (2023) → 65.35 (2024)**.
 
--> **The customer base skews toward good/very good credit**, a relatively low-risk portfolio overall.
+-> **The customer base skews toward good/very good credit every year** (a low-risk portfolio), but the shrinking per-transaction spend of the small "Very Poor" segment is a leading indicator worth watching alongside the broader 2024 volume decline.
 
-#### **4. Monthly Customer Trend**
-- Active customer count (AC) hovers close to the prior-year (PY) and forecast (FC) lines, spiking slightly around **July** before returning to baseline.
+#### **4. Customer Count Trend**
+- Total customers are **slowly declining**: **303 (2022) → 302 (2023, -0.33%) → 301 (2024, -0.33%)**.
 
--> **Customer base size is stable**, with no signs of major churn or acquisition swings.
+-> **Customer base is essentially stable with only marginal attrition**, meaning the 2024 revenue drop is driven by **lower spend per customer**, not customer loss.
 
 #### **5. Merchant State Breakdown**
-- **CA (California)** is the top state by transaction amount (**275,214**) and transaction count (**6,920**), followed by **AK** and **FL**.
-- International states like **China, Costa Rica, Denmark, Dominican Republic** appear with very low volumes, likely cross-border edge cases.
+- **CA (California)** is the top state every year, but its transaction volume falls in line with the overall trend: **275,214 / 6,920 orders (2022) → 279,062 / 6,742 (2023) → 224,356 / 5,579 (2024)**.
+- Total transaction amount by state mirrors the headline numbers: **2.42M (2022) → 2.43M (2023) → 2.02M (2024)**, with the same long tail of low-volume international states (China, Costa Rica, Dominican Republic, etc.) appearing each year.
 
--> **Transaction activity is heavily domestic and concentrated in a few states**, with a long tail of low-volume international activity worth monitoring for anomalies.
+-> **The 2024 decline is broad-based across states**, not localized to one region — reinforcing that this is an overall volume/spend issue rather than a geography-specific one.
 
 ### III. 🚨 Risk & Fraud
 
 ![Image](https://github.com/user-attachments/assets/ab8f8d4e-8da3-42c6-b218-d567093124ea)
 
 
-### 📌 Key Findings:
+### 📌 Key Findings (comparing 2022 → 2023 → 2024):
 
 #### **1. Overall Risk Metrics**
-- **High-risk transactions** total **5K**, down **-16.86%** YoY, and **refunded count** is **2K**, down **-16.03%** YoY — both improving.
-- However, **refund rate** ticked up slightly to **5.23% (+1.00%)**, and **22 merchants** remain flagged (down from more last year, **-12%**).
+- **High-risk transactions**: **6K (2022) → 6K (2023, +0.66%) → 5K (2024, -16.86%)**.
+- **Refunded count**: **3K (2022) → 3K (2023, -0.59%) → 2K (2024, -16.03%)**.
+- **Refund rate** is remarkably stable: **5.21% → 5.18% → 5.23%**, never straying more than ~0.05 points across 3 years.
+- **Flagged merchants steadily decline every year**: **27 (2022) → 25 (2023, -7.41%) → 22 (2024, -12.00%)**.
 
--> **Risk volume is shrinking, but refund rate creeping up** suggests remaining risk is more concentrated per transaction.
+-> **Refund rate is a very stable baseline metric (~5.2%) regardless of year**, while the **flagged-merchant count is genuinely improving year over year** — a positive sign of tighter vendor risk controls. The drop in raw high-risk/refunded counts in 2024 should be read alongside the partial-year data caveat noted in the Overview.
 
 #### **2. Refund Rate Trend**
-- Refund rate is volatile month to month, spiking to **~5.8% in April** and **~5.6% in July**, with lower points around **~4.8–5.0%** in March, May, and August.
+- **2022**: ranged from a low of **4.44% (Sep)** to a high of **5.61% (May)**, with no single consistent seasonal pattern.
+- **2023**: low of **4.42% (Feb)**, high of **5.61% (Apr)**.
+- **2024**: low of **4.84% (Mar)**, high of **5.78% (Apr)**, with data available through **October** only.
+- **April stands out as a recurring high-refund month across all 3 years** (5.51%, 5.61%, 5.78%).
 
--> **Refund rate spikes don't follow a clean seasonal pattern**, warranting month-by-month root-cause review rather than assuming seasonality.
+-> **April is a consistent refund-rate hotspot every year** — worth investigating for a recurring cause (e.g., billing cycle, seasonal merchandise returns, post-holiday disputes) rather than treating it as random noise.
 
 #### **3. Refund Rate by Card Type**
-- **Debit cards** have the highest refund rate (**5.38%**), close behind **Credit (5.15%)**, while **Debit (Prepaid)** is notably lower (**3.99%**).
+- **Debit (Prepaid) is consistently the lowest-risk card type every year**: **3.73% (2022) → 3.06% (2023) → 3.99% (2024)**.
+- **Credit and Debit refund rates stay close together and elevated (~5.1–5.4%)** in all 3 years, with the higher of the two alternating between Credit (2022, 2023) and Debit (2024).
 
--> **Prepaid debit cards carry the lowest refund risk**, possibly due to lower per-transaction limits or different customer behavior.
+-> **Prepaid debit is a structurally lower-risk card type**, a pattern that holds across all 3 years — a reliable signal for risk-based pricing or fraud-model weighting.
 
 #### **4. Transaction Heatmap**
-- Transaction activity is heavily concentrated in the **morning hours (07:00–08:00)**, especially on **weekdays**, with counts reaching **20–33** per hour/day cell.
-- Very early hours (00:00–05:00) show minimal activity across all days.
+- Across the dashboards, transaction activity consistently concentrates in **weekday morning hours (07:00–08:00)**, with counts reaching into the **20s–40s** per cell — this pattern repeats in every year filter.
 
--> **Fraud monitoring resources should weight toward early-morning weekday hours**, where volume — and therefore absolute risk exposure — is highest.
+-> **Peak-hour concentration is a stable, predictable pattern**, so fraud-monitoring staffing and alert thresholds can be confidently aligned to early-morning weekday windows.
 
 #### **5. Refund Rate by Payment Method**
-- **Chip transactions** have the highest refund rate (**6.06%**), followed by **Swipe (5.06%)**, while **Online transactions** are far lower (**0.25%**).
+- **Chip consistently has the highest refund rate of the three payment methods every year**: **5.88–6.06%**, vs. Swipe at **5.06–5.71%**, vs. Online at a much lower **0.21–0.25%**.
 
--> Despite chip being the dominant and generally trusted channel, **it also carries the highest refund rate**, suggesting closer scrutiny is needed there rather than assuming online is riskier.
+-> This is a **persistent, 3-year pattern, not a one-off** — chip transactions warrant closer fraud scrutiny despite being the trusted, dominant channel, while online's very low refund rate suggests its controls are working well.
 
 #### **6. Top 5 States by Refund Rate**
-- **Spain** shows a **100% refund rate**, though on a very small base (1 transaction), followed by **Portugal and France (50%)**, **Germany (40%)**, and **United Kingdom (36.36%)**.
+- The specific states change completely every year (**HI/AK/KS/Lebanon/Norway in 2022**, **Switzerland/Aruba/Jamaica/Peru/Germany/Nigeria in 2023**, **UK/Germany/Portugal/France/Spain in 2024**), but they share one trait: **very small transaction counts (1–35 transactions)** driving extreme refund-rate percentages (up to 100%).
 
--> These are **low-volume international outliers rather than systemic risk**, but they're worth flagging individually given the small sample sizes can mask real fraud patterns.
+-> These are **statistical outliers from thin sample sizes rather than a systemic geography risk** — worth a manual review case by case, but not a pattern to build a blanket policy around.
 
 ## 🔎 Final Conclusion & Recommendation
 
 | **Aspect**                     | **Insight**                                                                                                      | **Recommendation**                                                                                       |
 |---------------------------------|------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Transaction Volume & Value**  | Volume is roughly flat YoY (-0.11%) while total amount edges up (+0.18%); monthly swings (e.g., July spike, February dip) don't map cleanly to seasonality. | Investigate the drivers behind the **July spike and February dip** specifically, rather than assuming seasonal patterns. Use the moving-average and forecast lines to set realistic monthly targets. |
-| **Customer & Revenue Concentration** | **High-income customers** drive the largest share of spend; credit segments skew toward **Good/Very Good**, indicating a relatively low-risk customer base. | **Prioritize retention programs for high-income customers** and consider targeted offers for **Fair/Poor** segments to grow volume without adding disproportionate risk. |
-| **Payment Method & Channel Risk** | **Chip transactions dominate volume (71%)** but also carry the **highest refund rate (6.06%)**, higher than swipe or online. | Strengthen **fraud checks specifically on chip transactions** rather than assuming they are inherently safer; review authorization rules for this channel. |
-| **Fraud & Refund Risk**         | High-risk transaction count and refunded count are both **declining YoY**, but overall refund rate ticked **up slightly**, and a handful of low-volume states show **very high refund rates**. | Set up **automated alerts for refund rate spikes** by month, card type, and merchant, and review the **22 flagged merchants** and low-volume international states individually to confirm whether they represent fraud or one-off anomalies. |
-| **Timing Patterns**             | Transaction activity is concentrated in **early morning weekday hours**, based on the heatmap. | Align **fraud monitoring staffing and alert thresholds** with peak activity windows to catch issues in near real-time rather than after the fact. |
+| **2024 Volume Decline**         | Total amount and transactions were stable-to-growing in 2022–2023, then dropped sharply in **2024 (-16.66% / -16.86%)**, hitting all income segments and states proportionally. Note: 2024's Nov–Dec are forecast, not actual, so the true full-year gap may be smaller — but Jan–Oct 2024 data alone already trails prior years. | Confirm whether the 2024 dip is a genuine business decline or a data-completeness issue by refreshing with full-year actuals; if genuine, investigate broad-based causes (macro, product, competition) rather than a single segment or region. |
+| **Recurring Seasonal Patterns** | **February is a consistent low point** in transaction amount/volume across all 3 years, and **April is a consistent refund-rate hotspot**. | Plan **staffing, marketing, and fraud-review resources** around these recurring calendar patterns instead of treating each year's dip/spike as a one-off. |
+| **Customer & Revenue Concentration** | **High-income customers** drive the largest share of spend every year; credit segments skew toward **Good/Very Good**, indicating a relatively low-risk, stable customer base (customer count declining only ~0.33%/year). | **Prioritize retention programs for high-income customers**, since 2024's spend drop hit them hardest in absolute terms; consider targeted offers for **Fair/Low-income** segments to diversify revenue. |
+| **Payment Method & Channel Risk** | **Chip transactions dominate volume (~71%)** and consistently carry the **highest refund rate (5.9–6.1%)** of any payment method, every year; **Debit (Prepaid)** cards are consistently the lowest-risk card type. | Strengthen **fraud checks specifically on chip transactions** rather than assuming they are inherently safer; consider favorable risk weighting for prepaid debit given its consistently lower refund rate. |
+| **Fraud & Vendor Risk**         | **Flagged merchants have declined every year (27 → 25 → 22)** — a genuine improving trend — while refund rate holds steady at ~5.2% and top-refund-rate states are low-volume statistical outliers that change every year. | Continue current vendor risk controls given the improving flagged-merchant trend; set up **automated alerts for refund rate spikes by month/card type**, and review small-sample high-refund states individually rather than building policy around them. |
+| **Timing Patterns**             | Transaction activity is concentrated in **early morning weekday hours** consistently across all 3 years. | Align **fraud monitoring staffing and alert thresholds** with these confirmed peak activity windows. |
